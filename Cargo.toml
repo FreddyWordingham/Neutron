@@ -1,0 +1,11 @@
+[package]
+name = "neutron"
+version = "0.0.0"
+edition = "2021"
+
+[lib]
+name = "neutron"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.18", features = ["extension-module"] }
