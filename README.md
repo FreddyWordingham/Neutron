@@ -2,7 +2,9 @@
 
 Neutron scattering physics simulation
 
-![neutrons](./resources/images/distance.png)
+<div align="center">
+    <img src="./resources/images/distance.png" width="512" height="512" />
+</div>
 
 ## Installation
 
