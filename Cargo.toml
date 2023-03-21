@@ -1,10 +1,12 @@
 [package]
-name = "neutrons"
-version = "0.0.3"
-edition = "2021"
-description = "Neutron transport simulation."
 authors = ["Freddy Wordingham <freddy@digilab.co.uk>"]
+description = "Neutron transport simulation."
+edition = "2021"
 license-file = "LICENSE"
+name = "neutrons"
+readme = "README.md"
+repository = "https://github.com/FreddyWordingham/Neutron.git"
+version = "0.0.3"
 
 [lib]
 name = "neutrons"
