@@ -6,40 +6,27 @@ Neutron scattering physics simulation
 
 ### Dependencies
 
--   [Git](https://git-scm.com/downloads)
--   [Python 3.8+](https://www.python.org/downloads/)
--   [Poetry](https://python-poetry.org/docs/#installation)
 -   [Rust](https://www.rust-lang.org/tools/install)
 
 ### Quickstart
 
-Clone the repository:
+Downloading the release tool should be as simple as:
 
 ```shell
-git clone https://github.com/FreddyWordingham/Neutron.git neutron
-cd neutron
+cargo install neutrons
 ```
 
-Install the dependencies:
+Create a directory called `input`, and within it add a parameters file called `parameters.json`:
 
 ```shell
-poetry install
+mkdir input
+touch input/parameters.json
 ```
 
-Build the package:
+The parameters file should look something like [this](./input/parameters.json).
+
+You can then run the program with:
 
 ```shell
-poetry run maturin develop --release
-```
-
-Install the package:
-
-```shell
-poetry run pip install .
-```
-
-Run the example script:
-
-```shell
-poetry run python scripts/run.py
+neutrons parameters.json
 ```
