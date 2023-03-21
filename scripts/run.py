@@ -1,4 +1,4 @@
-import neutron
+import neutrons
 
 
 num_threads = 1
@@ -34,7 +34,7 @@ maxs = [0.5, 0.5, 0.5]
 
 num_voxels = [128, 128, 128]
 
-neutron.simulate(
+neutrons.simulate(
     num_threads,
     num_steps,
     colour_map,

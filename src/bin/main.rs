@@ -1,78 +1,24 @@
-pub mod colours;
-pub mod data;
-pub mod engine;
-pub mod model;
-pub mod parameters;
-pub mod particle;
-pub mod run;
-
-pub use self::colours::*;
-pub use self::data::*;
-pub use self::engine::*;
-pub use self::model::*;
-pub use self::parameters::*;
-pub use self::particle::*;
-pub use self::run::*;
-
-use pyo3::prelude::*;
+use arctk::args;
 use rand::rngs::ThreadRng;
-use std::{env::current_dir, f64::consts::PI, fs::create_dir, path::PathBuf};
+use std::{env::current_dir, fs::create_dir, path::PathBuf};
 
-/// Runs a simulation.
-#[pyfunction]
-fn simulate(
-    num_threads: usize,
-    num_steps: usize,
-    colour_map: Vec<String>,
-    num_neutrons: usize,
-    block_size: usize,
-    bump_dist: f64,
-    min_weight: f64,
-    gun_pos: [f64; 3],
-    gun_target: [f64; 3],
-    gun_spread: f64,
-    scat_coeff: f64,
-    abs_coeff: f64,
-    mins: [f64; 3],
-    maxs: [f64; 3],
-    num_voxels: [usize; 3],
-) -> PyResult<String> {
-    let params = parameters::Parameters {
-        num_threads,
-        num_steps,
-        colour_map,
-        num_neutrons,
-        block_size,
-        bump_dist,
-        min_weight,
-        gun_pos,
-        gun_target,
-        gun_spread: gun_spread * PI / 180.0,
-        scat_coeff,
-        abs_coeff,
-        mins,
-        maxs,
-        num_voxels,
-    };
+use neutrons::{run, Data, Model, Parameters, Particle};
 
-    entrypoint(&params);
+/// Entrypoint.
+/// # Parameters
+/// * `_bin_path`: Path to the binary. Included by default.
+/// * `params_path`: Path to the parameters file relative, to the "input/" directory.
+fn main() {
+    // Parse command line arguments.
+    args!(_bin_path: PathBuf, params_path: PathBuf);
 
-    Ok("Simulation complete.".to_string())
-}
-
-/// A Python module implemented in Rust.
-#[pymodule]
-fn neutrons(_py: Python, m: &PyModule) -> PyResult<()> {
-    m.add_function(wrap_pyfunction!(simulate, m)?)?;
-    Ok(())
-}
-
-/// Simulation entrypoint.
-fn entrypoint(params: &parameters::Parameters) {
     // Setup directories.
     let cwd = current_dir().expect("Failed to determine current working directory");
     let (in_dir, out_dir) = (cwd.join("input"), cwd.join("output"));
     init_dirs(&in_dir, &out_dir);
+
+    // Read input parameters.
+    let params = Parameters::load(&in_dir.join(&params_path));
 
     // Build model.
     let model = Model::new(&params);
@@ -94,10 +40,10 @@ fn entrypoint(params: &parameters::Parameters) {
 }
 
 /// Initialise the input and output directories.
-fn init_dirs(_input: &PathBuf, output: &PathBuf) {
-    // if !input.exists() {
-    //     create_dir(&input).expect("Failed to create input directory");
-    // }
+fn init_dirs(input: &PathBuf, output: &PathBuf) {
+    if !input.exists() {
+        create_dir(&input).expect("Failed to create input directory");
+    }
 
     if !output.exists() {
         create_dir(&output).expect("Failed to create output directory");

@@ -1,11 +1,12 @@
 [package]
-name = "neutron"
+name = "neutrons"
 version = "0.0.0"
 edition = "2021"
 
 [lib]
-name = "neutron"
-crate-type = ["cdylib"]
+name = "neutrons"
+# crate-type = ["cdylib"]
+crate-type = ["rlib"]
 
 [dependencies]
 arctk = "2.0.10"

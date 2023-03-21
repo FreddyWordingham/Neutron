@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "neutron"
+name = "neutrons"
 version = "0.0.0"
 description = "Neutron scattering physics simulation"
 authors = ["FreddyWordingham <freddy@digilab.co.uk>"]
@@ -15,14 +15,14 @@ black = "^22.0.0"
 flake8 = "^4.0.1"
 
 [tool.maturin]
-python-source = "neutron"
+python-source = "neutrons"
 
 [build-system]
 requires = ["maturin>=0.13,<0.14"]
 build-backend = "maturin"
 
 [project]
-name = "neutron"
+name = "neutrons"
 requires-python = ">=3.7"
 classifiers = [
     "Programming Language :: Rust",
