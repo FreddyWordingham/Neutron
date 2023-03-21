@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "neutrons"
-version = "0.0.0"
+version = "0.0.2"
 description = "Neutron scattering physics simulation"
 authors = ["FreddyWordingham <freddy@digilab.co.uk>"]
 readme = "README.md"
