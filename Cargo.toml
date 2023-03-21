@@ -1,6 +1,6 @@
 [package]
 name = "neutrons"
-version = "0.0.0"
+version = "0.0.1"
 edition = "2021"
 description = "Neutron transport simulation."
 authors = ["Freddy Wordingham <freddy@digilab.co.uk>"]
