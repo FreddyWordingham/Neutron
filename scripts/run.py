@@ -1,7 +1,7 @@
 import neutron
 
 
-num_threads = 8
+num_threads = 1
 num_steps = 100
 
 colour_map = [
@@ -23,14 +23,14 @@ block_size = 100
 bump_dist = 1e-9
 min_weight = 1e-3
 
-gun_pos = [0.0, 0.0, -1.0]
+gun_pos = [-1.0, 0.0, 0.0]
 gun_target = [0.0, 0.0, 0.0]
 gun_spread = 30.0  # degrees
 
-scat_coeff = 1e-1
+scat_coeff = 0.5e1
 abs_coeff = 1e-1
-mins = [-0.5e-1, -0.5e-1, -0.5e-1]
-maxs = [0.5e-1, 0.5e-1, 0.5e-1]
+mins = [-0.5, -0.5, -0.5]
+maxs = [0.5, 0.5, 0.5]
 
 num_voxels = [128, 128, 128]
 
