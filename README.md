@@ -2,6 +2,8 @@
 
 Neutron scattering physics simulation
 
+![neutrons](./resources/images/distance.png)
+
 ## Installation
 
 ### Dependencies
